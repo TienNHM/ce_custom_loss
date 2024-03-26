@@ -93,14 +93,14 @@ class A2CAgent:
         #advantages advantages[np.where(advantages==np.max(advantages))] = 1
         advantages = (advantages - np.min(advantages))/np.ptp(advantages)
         #print("advantages", advantages)
-        self.actor.fit(state, advantages, epochs=1, verbose=1)
-        self.critic.fit(state, target, epochs=1, verbose=1)
+        self.actor.fit(state, advantages, epochs=1, verbose=0)
+        self.critic.fit(state, target, epochs=1, verbose=0)
 
 # %%
 
 if __name__ == "__main__":
     # In case of CartPole-v1, maximum length of episode is 500
-    env = gym.make('CartPole-v0', render_mode="human")
+    env = gym.make('CartPole-v1', render_mode="human")
     # get size of state and action from environment
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
